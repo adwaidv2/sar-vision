@@ -1,0 +1,6 @@
+# Ignore Python backend files during Vercel deployment so it builds purely as a high-speed static web app
+backend/
+api/
+run_server.bat
+push_to_github.bat
+*.bat
