@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI-Based SAR Image Translation and Terrain Analysis | Academic Project</title>
+  
+  <!-- SEO & Project Metadata -->
+  <meta name="description" content="AI-Based Synthetic Aperture Radar (SAR) Image Translation and Semantic Terrain Analysis using Deep Learning, CNN Encoder-Decoder, and U-Net.">
+  <meta name="keywords" content="SAR, Synthetic Aperture Radar, Deep Learning, Image Translation, Terrain Analysis, Sentinel-1, Sentinel-2, U-Net, Remote Sensing">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/demo.css">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ==========================================================================
+       HEADER & NAVIGATION BAR
+       ========================================================================== -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="#home" class="nav-brand">
+        <div class="nav-logo-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 3a9 9 0 0 1 9 9"/>
+            <path d="M12 7a5 5 0 0 1 5 5"/>
+            <circle cx="12" cy="12" r="1.5" fill="currentColor"/>
+          </svg>
+        </div>
+        <div>
+          <span>SAR-Vision AI</span>
+          <span class="brand-text-sub">Academic Project Demo</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="#home" class="nav-link active">Home</a></li>
+          <li><a href="#about" class="nav-link">About SAR</a></li>
+          <li><a href="#workflow" class="nav-link">How It Works</a></li>
+          <li><a href="#demo" class="nav-link">Interactive Demo</a></li>
+          <li><a href="#innovation" class="nav-link">Proposed System</a></li>
+          <li><a href="#tech-stack" class="nav-link">Tech Stack</a></li>
+          <li><a href="#users" class="nav-link">Users & Impact</a></li>
+          <li><a href="#limitations" class="nav-link">Scope & Limits</a></li>
+          <li><a href="#demo" class="nav-cta-btn">Try Image Demo</a></li>
+        </ul>
+      </nav>
+
+      <!-- Mobile Hamburger Toggle -->
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        &#9776;
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ==========================================================================
+         1. HERO SECTION (HOMEPAGE)
+         ========================================================================== -->
+    <section class="hero" id="home">
+      <div class="hero-grid-bg"></div>
+      <div class="container hero-content">
+        <div class="hero-text">
+          <div class="academic-badge">
+            <span class="badge-dot pulse-blue"></span>
+            Academic Research Project &bull; Remote Sensing AI
+          </div>
+          <h1 class="hero-title">
+            AI-Based <span class="gradient-text">SAR Image Translation</span> &amp; Terrain Analysis
+          </h1>
+          <p class="hero-description">
+            Translating complex, grayscale Synthetic Aperture Radar (SAR) satellite data into intuitive, optical-like color imagery using deep learning, followed by semantic segmentation for high-impact terrain analysis.
+          </p>
+
+          <div class="hero-buttons">
+            <a href="#demo" class="btn btn-primary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="5 3 19 12 5 21 5 3"/>
+              </svg>
+              Try Image Demo
+            </a>
+            <a href="#about" class="btn btn-secondary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="16" x2="12" y2="12"/>
+                <line x1="12" y1="8" x2="12.01" y2="8"/>
+              </svg>
+              Explore Project
+            </a>
+          </div>
+
+          <!-- SAR All-Weather Advantage Banner -->
+          <div class="hero-sar-advantage">
+            <div class="advantage-icon">&#9928;</div>
+            <div class="advantage-content">
+              <h4>Why Synthetic Aperture Radar (SAR)?</h4>
+              <p>
+                Unlike standard optical satellites (such as Sentinel-2 or Google Earth) which are completely blinded by thick monsoon clouds, smoke, or nighttime darkness, <strong>SAR emits active microwave pulses (C-band ~5.4 GHz)</strong> that pierce through heavy storm clouds and rain to observe Earth 24 hours a day, 365 days a year.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Preview Mockup / Interactive Widget -->
+        <div class="hero-visual">
+          <div class="hero-preview-card">
+            <div class="preview-card-header">
+              <div class="window-dots">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+              <span>Sentinel-1 (SAR) &rarr; Translation Simulation</span>
+            </div>
+            
+            <div class="preview-comparison-grid">
+              <div class="preview-tile">
+                <span class="tile-tag tag-sar">Raw SAR Input (VV/VH)</span>
+                <div class="preview-img-wrapper">
+                  <!-- Canvas will be initialized by samples.js -->
+                  <canvas id="hero-sar-canvas" width="220" height="220"></canvas>
+                </div>
+              </div>
+              <div class="preview-tile">
+                <span class="tile-tag tag-optical">Optical-like Colourized</span>
+                <div class="preview-img-wrapper">
+                  <canvas id="hero-opt-canvas" width="220" height="220"></canvas>
+                </div>
+              </div>
+            </div>
+
+            <div class="preview-card-footer">
+              <span id="backend-status-badge" class="status-badge client-engine">
+                <span class="badge-dot pulse-blue"></span> Client Processing Ready
+              </span>
+              <a href="#demo" style="color: var(--teal-300); font-weight: 600; font-size: 0.78rem;">
+                Open Interactive Workbench &rarr;
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         2. ABOUT THE PROJECT
+         ========================================================================== -->
+    <section class="about" id="about">
+      <div class="container">
+        <div class="section-header">
+          <span class="badge-tag">Academic Context &amp; Fundamentals</span>
+          <h2 class="section-title">About the Project</h2>
+          <p class="section-subtitle">
+            Demystifying satellite remote sensing, radar physics, and the deep-learning translation pipeline for both scientific researchers and community-support workers.
+          </p>
+
+          <!-- Toggle: Scientific vs Plain English Mode -->
+          <div class="mode-toggle-wrapper">
+            <button class="toggle-switch-btn" id="explain-mode-toggle">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 20h9"/>
+                <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+              </svg>
+              <span id="explain-mode-label">Toggle Plain English Mode (For Non-Technical Users)</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="about-cards-grid">
+          <!-- Card 1: Remote Sensing -->
+          <div class="about-card">
+            <div class="about-card-icon">&#128752;</div>
+            <h3>1. What is Remote Sensing?</h3>
+            <div class="about-tech-view">
+              <p>Remote sensing is the science of acquiring geospatial information about Earth's surface and atmosphere from aerospace platforms without physical contact, utilizing electromagnetic radiation across visible, infrared, and microwave spectra.</p>
+              <div class="about-card-highlight">Key Metric: Multi-spectral reflectance vs active microwave backscatter coefficient (&sigma;&deg; in decibels).</div>
+            </div>
+            <div class="about-plain-view" style="display: none;">
+              <p>Remote sensing simply means taking pictures of our planet from high-flying satellites in space. Just like a camera on a phone, satellites take photographs to track weather, check crops, and inspect land from miles above the clouds.</p>
+              <div class="about-card-highlight">In Simple Words: Watching Earth's health from space without having to walk across every acre.</div>
+            </div>
+          </div>
+
+          <!-- Card 2: What is SAR -->
+          <div class="about-card">
+            <div class="about-card-icon">&#128225;</div>
+            <h3>2. What is SAR?</h3>
+            <div class="about-tech-view">
+              <p>Synthetic Aperture Radar (SAR) is an active coherent microwave sensor that transmits radar pulses and records both echo amplitude and phase. By synthesizing a long antenna via orbital platform motion, SAR achieves fine spatial resolution (~10m on Sentinel-1) regardless of altitude.</p>
+              <div class="about-card-highlight">Physics Advantage: Active illumination operates completely independent of sunlight, penetrating cloud decks, haze, and precipitation.</div>
+            </div>
+            <div class="about-plain-view" style="display: none;">
+              <p>Regular cameras need sunlight and clear skies to take a photo. When severe monsoon storms hit, dark rain clouds block the view. SAR doesn't use sunlight—it shoots its own radar radio signals through storm clouds and listens to the echoes that bounce back. It works perfectly in pitch-black night and through heavy monsoon rainfall.</p>
+              <div class="about-card-highlight">In Simple Words: A space radar with "X-ray vision" that sees right through storm clouds and midnight darkness.</div>
+            </div>
+          </div>
+
+          <!-- Card 3: Why SAR is Hard to Interpret -->
+          <div class="about-card">
+            <div class="about-card-icon">&#128065;&#65039;</div>
+            <h3>3. Why are SAR Images Difficult to Read?</h3>
+            <div class="about-tech-view">
+              <p>SAR imagery does not measure visual color or optical albedo; it measures surface roughness, geometric orientation, and complex dielectric constant (moisture). Furthermore, coherent wave interference produces multiplicative speckle noise ("salt-and-pepper" noise), and side-looking geometry creates layover, foreshortening, and shadow distortions.</p>
+              <div class="about-card-highlight">Interpretation Challenge: Water appears black because of specular reflection, while concrete buildings appear blazing white due to corner double-bounce reflections.</div>
+            </div>
+            <div class="about-plain-view" style="display: none;">
+              <p>A normal satellite picture looks like an aerial photograph with green trees and blue water. A raw SAR radar image looks like a grainy, black-and-white television static screen. Non-experts cannot easily tell if a dark patch is a peaceful lake, a flooded farm, a paved airport runway, or a mountain shadow.</p>
+              <div class="about-card-highlight">In Simple Words: SAR images look like noisy black-and-white grain that requires specialized radar training to understand.</div>
+            </div>
+          </div>
+
+          <!-- Card 4: How Deep Learning Solves It -->
+          <div class="about-card">
+            <div class="about-card-icon">&#129302;</div>
+            <h3>4. How Deep Learning Generates Color</h3>
+            <div class="about-tech-view">
+              <p>By training a Convolutional Neural Network (CNN) Encoder-Decoder on spatially coregistered pairs of Sentinel-1 SAR and Sentinel-2 optical images, the network learns an end-to-end non-linear translation. Using the CIE Lab color space, the network preserves radar backscatter as Luminance (L*) and synthesizes chromaticity channels (a*, b*).</p>
+              <div class="about-card-highlight">Core Model: Fully convolutional encoder-decoder with residual bottleneck blocks, minimizing Mean Squared Error (MSE) and perceptual loss.</div>
+            </div>
+            <div class="about-plain-view" style="display: none;">
+              <p>Computers can be shown thousands of examples where a radar image is matched with a real color photo taken on a sunny day. By comparing the two, artificial intelligence learns how radar patterns match up with real-world colors, automatically painting green on forests, blue on rivers, and gray on towns.</p>
+              <div class="about-card-highlight">In Simple Words: AI acts like an intelligent artist that paints natural, realistic colors onto confusing black-and-white radar images.</div>
+            </div>
+          </div>
+
+          <!-- Card 5: Why Terrain Analysis is Crucial -->
+          <div class="about-card">
+            <div class="about-card-icon">&#127758;</div>
+            <h3>5. Why Terrain Analysis Beyond Color?</h3>
+            <div class="about-tech-view">
+              <p>Colourization improves perceptual interpretability for human observers, but it does not quantify land cover. Our proposed Stage 2 semantic segmentation model (U-Net) categorizes pixels into discrete functional classes (water, vegetation, built-up, bare soil), enabling automated geospatial metric calculation such as flood inundation acreage.</p>
+              <div class="about-card-highlight">Proposed Addition: Transforming aesthetic translation into actionable, quantifiable scientific decision metrics.</div>
+            </div>
+            <div class="about-plain-view" style="display: none;">
+              <p>Making an image pretty with color helps the human eye, but during a flood emergency, rescue teams need hard facts: exactly how many square kilometers of farm are underwater, which roads are blocked, and where houses are located. Terrain analysis provides those exact safety answers.</p>
+              <div class="about-card-highlight">In Simple Words: Color makes the picture clear to see; terrain analysis counts the flooded areas and protects communities.</div>
+            </div>
+          </div>
+
+          <!-- Card 6: Disaster & Frontline Support -->
+          <div class="about-card">
+            <div class="about-card-icon">&#128657;</div>
+            <h3>6. ASHA & Community Disaster Context</h3>
+            <div class="about-tech-view">
+              <p>During severe hydrological events, cloud cover renders traditional optical assets ineffective for up to two weeks. SAR-derived terrain analysis provides rapid situational awareness to public health coordinators, ASHA workers, and district emergency response teams.</p>
+              <div class="about-card-highlight">Operational Role: Identifies marooned hamlets, drinking water contamination vectors, and submerged access routes.</div>
+            </div>
+            <div class="about-plain-view" style="display: none;">
+              <p>When heavy floods cut off roads and power in rural areas, local community workers (like ASHA health workers) need to know which village roads are impassable and which water wells are contaminated. Our translated imagery helps them communicate safely with district authorities.</p>
+              <div class="about-card-highlight">In Simple Words: Giving local healthcare workers a reliable flood map when normal maps are blocked by monsoon clouds.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         3. HOW IT WORKS (WORKFLOW PIPELINE)
+         ========================================================================== -->
+    <section class="workflow section-dark" id="workflow">
+      <div class="container">
+        <div class="section-header">
+          <span class="badge-tag">End-to-End Architecture</span>
+          <h2 class="section-title">How It Works</h2>
+          <p class="section-subtitle">
+            Explore the seven key pipeline stages from satellite constellation orbit down to pixel-level semantic terrain classification.
+          </p>
+        </div>
+
+        <!-- Step-by-Step Interactive Workflow Pipeline -->
+        <div class="workflow-pipeline-wrapper">
+          <div class="pipeline-stepper" id="pipeline-stepper">
+            <div class="workflow-step-node active" data-step="1">
+              <span class="step-num">Step 01</span>
+              <div class="step-title">Data Acquisition</div>
+            </div>
+            <div class="step-arrow">&rarr;</div>
+            <div class="workflow-step-node" data-step="2">
+              <span class="step-num">Step 02</span>
+              <div class="step-title">SAR Input</div>
+            </div>
+            <div class="step-arrow">&rarr;</div>
+            <div class="workflow-step-node" data-step="3">
+              <span class="step-num">Step 03</span>
+              <div class="step-title">Preprocessing</div>
+            </div>
+            <div class="step-arrow">&rarr;</div>
+            <div class="workflow-step-node" data-step="4">
+              <span class="step-num">Step 04</span>
+              <div class="step-title">CNN Translation</div>
+            </div>
+            <div class="step-arrow">&rarr;</div>
+            <div class="workflow-step-node" data-step="5">
+              <span class="step-num">Step 05</span>
+              <div class="step-title">Optical Generation</div>
+            </div>
+            <div class="step-arrow">&rarr;</div>
+            <div class="workflow-step-node" data-step="6">
+              <span class="step-num">Step 06</span>
+              <div class="step-title">U-Net Segmentation</div>
+            </div>
+            <div class="step-arrow">&rarr;</div>
+            <div class="workflow-step-node" data-step="7">
+              <span class="step-num">Step 07</span>
+              <div class="step-title">Visual Results</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dynamic Step Details Container -->
+        <div class="workflow-details-container">
+          <!-- Step 1 Details -->
+          <div class="workflow-step-detail active" data-step="1">
+            <div class="detail-layout">
+              <div class="detail-info">
+                <span class="detail-badge">Copernicus Satellite Constellation</span>
+                <h3>1. Satellite Data Acquisition</h3>
+                <p>Acquiring satellite imagery from the European Space Agency's (ESA) Copernicus Programme. We utilize <strong>Sentinel-1</strong> C-band Synthetic Aperture Radar (SAR) as the primary input sensor, alongside cloud-free <strong>Sentinel-2</strong> Multispectral Instrument (MSI) optical images as training ground-truth references.</p>
+                <ul class="detail-bullets">
+                  <li><strong>Sentinel-1 SAR:</strong> Sun-synchronous polar orbit, C-band center frequency of 5.405 GHz, 12-day repeat cycle (6 days with twin satellites).</li>
+                  <li><strong>Sentinel-2 Optical:</strong> 13 spectral bands from visible to shortwave infrared, used exclusively during model training to teach the AI what the ground truly looks like.</li>
+                </ul>
+              </div>
+              <div class="detail-graphic">
+                <div class="detail-graphic-header">Spaceborne Orbital Sensors</div>
+                <div style="font-size: 3.5rem; margin-bottom: 0.5rem;">🛰️ &rarr; 🌍</div>
+                <p style="font-size: 0.85rem; color: var(--slate-300);">Sentinel-1 Active Microwave (All-Weather)<br>+ Sentinel-2 Optical Multi-Spectral</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2 Details -->
+          <div class="workflow-step-detail" data-step="2">
+            <div class="detail-layout">
+              <div class="detail-info">
+                <span class="detail-badge">Raw Polarimetric Channels</span>
+                <h3>2. SAR Image Input</h3>
+                <p>The input data consists of Sentinel-1 Ground Range Detected (GRD) products in Interferometric Wide Swath (IW) mode. It provides dual-polarization channels with a 10m spatial resolution:</p>
+                <ul class="detail-bullets">
+                  <li><strong>VV Polarization (Vertical Transmit, Vertical Receive):</strong> Highly sensitive to surface roughness, water boundary specular reflections, and wave dynamics.</li>
+                  <li><strong>VH Polarization (Vertical Transmit, Horizontal Receive):</strong> Cross-polarization sensitive to depolarizing volume scattering from vegetative canopies and complex tree structures.</li>
+                </ul>
+              </div>
+              <div class="detail-graphic">
+                <div class="detail-graphic-header">Polarization Decomposition</div>
+                <div style="font-family: var(--font-mono); font-size: 1.1rem; color: var(--teal-300); padding: 1.5rem; background: var(--navy-900); border-radius: var(--radius-md);">
+                  Input Tensor: [B, 2, H, W]<br>
+                  Channel 0: &sigma;&deg; VV (dB)<br>
+                  Channel 1: &sigma;&deg; VH (dB)
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3 Details -->
+          <div class="workflow-step-detail" data-step="3">
+            <div class="detail-layout">
+              <div class="detail-info">
+                <span class="detail-badge">Radiometric &amp; Spatial Prep</span>
+                <h3>3. Image Preprocessing</h3>
+                <p>Raw SAR imagery must undergo rigorous calibration and spatial rectification before passing into neural networks:</p>
+                <ul class="detail-bullets">
+                  <li><strong>Radiometric Calibration:</strong> Converting raw digital numbers (DN) into sigma naught (&sigma;&deg;) backscatter coefficient in decibels (dB).</li>
+                  <li><strong>Speckle Filtering:</strong> Adaptive Lee or Frost filter to suppress multiplicative speckle noise while preserving crisp linear features.</li>
+                  <li><strong>Range Doppler Terrain Correction:</strong> Correcting geometric displacement using SRTM 30m Digital Elevation Models.</li>
+                  <li><strong>CIE Lab Space Conversion:</strong> Decoupling illumination intensity from color chromaticity channels.</li>
+                </ul>
+              </div>
+              <div class="detail-graphic">
+                <div class="detail-graphic-header">Noise Suppression &amp; Calibration</div>
+                <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">⚙️ 📉 📐</div>
+                <p style="font-size: 0.85rem; color: var(--slate-300);">Radiometric Sigma-0 Normalization &bull; Lee Speckle Filter &bull; Sub-pixel Coregistration</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 4 Details -->
+          <div class="workflow-step-detail" data-step="4">
+            <div class="detail-layout">
+              <div class="detail-info">
+                <span class="detail-badge">Deep Neural Translation Engine</span>
+                <h3>4. CNN Encoder&ndash;Decoder Model</h3>
+                <p>The translation network implements a deep convolutional architecture following the base-paper methodology:</p>
+                <ul class="detail-bullets">
+                  <li><strong>Encoder Network:</strong> Successive convolutional layers (Conv2D + BatchNorm + LeakyReLU) extract multi-scale spatial textures, context, and backscatter patterns.</li>
+                  <li><strong>Bottleneck:</strong> Dense latent representation with high receptive field capturing regional landscape topology.</li>
+                  <li><strong>Decoder Network:</strong> Transposed convolutions (ConvTranspose2D) progressively upsample latent features back to original resolution (H &times; W).</li>
+                </ul>
+              </div>
+              <div class="detail-graphic">
+                <div class="detail-graphic-header">Neural Bottleneck Architecture</div>
+                <div style="font-family: var(--font-mono); font-size: 0.95rem; color: var(--teal-300); padding: 1rem; background: var(--navy-900); border-radius: var(--radius-md);">
+                  SAR [2, H, W]<br>
+                  &darr; Conv + Downsample<br>
+                  Latent Space [512, H/16, W/16]<br>
+                  &uarr; Transposed Conv<br>
+                  Optical Lab [3, H, W]
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 5 Details -->
+          <div class="workflow-step-detail" data-step="5">
+            <div class="detail-layout">
+              <div class="detail-info">
+                <span class="detail-badge">Perceptual Synthesis</span>
+                <h3>5. Optical-like Image Generation</h3>
+                <p>The network outputs realistic optical-like color representation by combining the radar luminance (L*) with synthesized chromaticity (a*, b*) channels:</p>
+                <ul class="detail-bullets">
+                  <li><strong>Natural Visual Synthesis:</strong> Water surfaces rendered in naturalistic blues/teals, vegetation rendered in vibrant greens, soil in earthy tans, and urban concrete in neutral grays.</li>
+                  <li><strong>Interpretability Leap:</strong> Transforms an unintuitive speckle-heavy radar image into an easily legible satellite photograph for non-specialist decision makers.</li>
+                </ul>
+              </div>
+              <div class="detail-graphic">
+                <div class="detail-graphic-header">CIE Lab &rarr; sRGB Synthesis</div>
+                <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🎨 🖼️ ✨</div>
+                <p style="font-size: 0.85rem; color: var(--slate-300);">L* (Radar Luminance) + a* (Green-Red) + b* (Blue-Yellow) &rarr; Realistic Color Output</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 6 Details -->
+          <div class="workflow-step-detail" data-step="6">
+            <div class="detail-layout">
+              <div class="detail-info">
+                <span class="detail-badge">Proposed Innovation Stage</span>
+                <h3>6. Terrain Analysis using Semantic Segmentation (U-Net)</h3>
+                <p>Our key architectural extension beyond the base paper: feeding the synthesized feature representation into a <strong>U-Net semantic segmentation network</strong> to categorize each pixel into ground-truth land classes:</p>
+                <ul class="detail-bullets">
+                  <li><strong>Skip Connections:</strong> U-Net's direct horizontal skip connections forward fine spatial localization from early encoder stages directly to decoding layers, preserving sharp coastlines and river boundaries.</li>
+                  <li><strong>Target Classes:</strong> Water bodies (inundation zones), Vegetation &amp; Forests, Built-up Urban Structures, and Bare Land / Soil.</li>
+                </ul>
+              </div>
+              <div class="detail-graphic">
+                <div class="detail-graphic-header">U-Net Skip-Connection Network</div>
+                <div style="font-family: var(--font-mono); font-size: 0.88rem; color: var(--teal-300); padding: 1rem; background: var(--navy-900); border-radius: var(--radius-md);">
+                  Synthesized Image [3, H, W]<br>
+                  &darr; Contracting Path (Encoder)<br>
+                  &rarr; Skip Connections &rarr;<br>
+                  &uarr; Expansive Path (Decoder)<br>
+                  Softmax &rarr; [4, H, W] Class Masks
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 7 Details -->
+          <div class="workflow-step-detail" data-step="7">
+            <div class="detail-layout">
+              <div class="detail-info">
+                <span class="detail-badge">Decision Support Outputs</span>
+                <h3>7. Visual Results &amp; Quantitative Metrics</h3>
+                <p>The final stage delivers dual decision-support outputs accessible to both scientists and local authorities:</p>
+                <ul class="detail-bullets">
+                  <li><strong>Interactive Side-by-Side Comparison:</strong> Slide back and forth between raw SAR, optical translation, and segmented terrain overlays.</li>
+                  <li><strong>Quantitative Land Cover Statistics:</strong> Automated acreage calculation of flooded zones vs unaffected agricultural land to assist disaster relief planning.</li>
+                </ul>
+              </div>
+              <div class="detail-graphic">
+                <div class="detail-graphic-header">Final Product Interface</div>
+                <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">📊 🗺️ 📈</div>
+                <p style="font-size: 0.85rem; color: var(--slate-300);">Side-by-side interactive curtain &bull; Quantitative acreage calculation &bull; Geo-tagged outputs</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Supervised Paired Requirement Callout -->
+        <div class="pairing-callout">
+          <div class="callout-icon">&#9879;&#65039;</div>
+          <div class="callout-body">
+            <h4>Supervised Model Training Requirement: Paired SAR &amp; Optical Datasets</h4>
+            <p>
+              Supervised training of the CNN translation model strictly requires <strong>aligned pairs of Sentinel-1 SAR and Sentinel-2 optical imagery</strong> acquired over the exact same geographic footprint within a minimal temporal window (typically &plusmn;3 days to minimize seasonal or moisture changes). The optical reference image must have 0% cloud cover to establish true ground-truth pixel reflectance.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         4. INTERACTIVE IMAGE DEMO WORKBENCH
+         ========================================================================== -->
+    <section class="demo-workbench-section" id="demo">
+      <div class="container">
+        <div class="demo-header-wrapper">
+          <span class="badge-tag">Hands-On Testing Workbench</span>
+          <h2 class="section-title" style="color: var(--white);">Interactive Image Processing Demo</h2>
+          <p class="section-subtitle" style="color: var(--slate-300);">
+            Experiment with realistic satellite benchmarks or upload your own SAR image (PNG, JPG, TIFF). Test adaptive speckle filtering, contrast equalization, optical translation simulation, and preliminary K-Means pixel clustering.
+          </p>
+        </div>
+
+        <div class="demo-grid-layout">
+          <!-- Left Sidebar Controls -->
+          <div class="demo-controls-panel">
+            
+            <!-- Block 1: Presets -->
+            <div class="panel-block">
+              <div class="panel-block-title">
+                <span>🛰️</span> 1. Select Benchmark Preset
+              </div>
+              <div class="preset-buttons-grid">
+                <button class="preset-btn active" data-sample="flood-disaster">
+                  <span class="preset-icon">🌊</span>
+                  <span>Flood Disaster</span>
+                </button>
+                <button class="preset-btn" data-sample="coastal-port">
+                  <span class="preset-icon">⚓</span>
+                  <span>Coastal Harbor</span>
+                </button>
+                <button class="preset-btn" data-sample="agriculture-canals">
+                  <span class="preset-icon">🌾</span>
+                  <span>Farmland Canals</span>
+                </button>
+                <button class="preset-btn" data-sample="mountain-ridge">
+                  <span class="preset-icon">⛰️</span>
+                  <span>Mountain Ridge</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Block 2: Custom Upload -->
+            <div class="panel-block">
+              <div class="panel-block-title">
+                <span>📁</span> 2. Or Upload Custom Image
+              </div>
+              <div class="upload-dropzone" id="upload-dropzone">
+                <div class="upload-icon">📤</div>
+                <div class="upload-text">Drag &amp; drop or click to upload</div>
+                <div class="upload-hint">Supports PNG, JPG, and TIFF formats</div>
+                <input type="file" id="image-upload-input" accept=".png, .jpg, .jpeg, .tif, .tiff" style="display: none;">
+              </div>
+            </div>
+
+            <!-- Block 3: Processing Pipeline Actions -->
+            <div class="panel-block">
+              <div class="panel-block-title">
+                <span>⚙️</span> 3. Processing Pipeline
+              </div>
+              <div class="action-buttons-group">
+                <button class="btn-pipeline btn-enhance" id="btn-enhance">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M12 6v6l4 2"/>
+                  </svg>
+                  Enhance Image (Lee Filter &amp; CLAHE)
+                </button>
+                <button class="btn-pipeline btn-visualize" id="btn-visualize">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="5 3 19 12 5 21 5 3"/>
+                  </svg>
+                  Generate Visualization &amp; Cluster
+                </button>
+              </div>
+            </div>
+
+            <!-- Block 4: Clustering Hyperparameters -->
+            <div class="panel-block">
+              <div class="panel-block-title">
+                <span>🧩</span> 4. Cluster Tuning
+              </div>
+              <div class="control-row">
+                <label class="control-label" for="cluster-k-select">Number of Clusters (K):</label>
+                <select class="control-select" id="cluster-k-select">
+                  <option value="3">3 Clusters</option>
+                  <option value="4" selected>4 Clusters (Standard)</option>
+                  <option value="5">5 Clusters</option>
+                  <option value="6">6 Clusters</option>
+                </select>
+              </div>
+              <div class="control-row" style="margin-top: 0.85rem;">
+                <label class="control-label" for="cluster-opacity-slider">
+                  Overlay Opacity (<span id="cluster-opacity-val">85%</span>):
+                </label>
+                <input type="range" class="control-range" id="cluster-opacity-slider" min="0" max="1" step="0.05" value="0.85">
+              </div>
+            </div>
+
+            <!-- Scientific Transparency Note -->
+            <div class="academic-note-badge" style="margin-top: 1rem;">
+              <strong>Academic Notice:</strong> This workbench executes genuine local signal processing (Adaptive Lee speckle filtering, dynamic range CLAHE, and K-Means pixel clustering). It demonstrates preliminary heuristic analysis and is distinctly separated from the future trained deep learning models.
+            </div>
+
+          </div>
+
+          <!-- Right Display & Viewer Panel -->
+          <div class="demo-viewer-panel">
+            
+            <div class="viewer-top-bar">
+              <!-- Output View Tabs -->
+              <div class="output-tabs" id="output-tabs">
+                <button class="output-tab active" data-tab="enhanced">Enhanced SAR</button>
+                <button class="output-tab" data-tab="translation">Optical Translation</button>
+                <button class="output-tab" data-tab="cluster">Terrain Clustering</button>
+              </div>
+
+              <!-- View Mode Toggle -->
+              <div class="view-mode-selector">
+                <button class="mode-btn active" id="mode-split" title="Interactive Split Curtain Slider">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="18" height="18" rx="2"/>
+                    <line x1="12" y1="3" x2="12" y2="21"/>
+                  </svg>
+                  Split View
+                </button>
+                <button class="mode-btn" id="mode-side" title="Side-by-Side Dual Display">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="3" width="9" height="18" rx="1"/>
+                    <rect x="13" y="3" width="9" height="18" rx="1"/>
+                  </svg>
+                  Side by Side
+                </button>
+              </div>
+            </div>
+
+            <!-- Canvas Viewport -->
+            <div class="view-container mode-split" id="view-container">
+              <!-- Left Base Layer (Input SAR) -->
+              <div class="canvas-wrapper" id="input-wrapper">
+                <canvas id="input-canvas" width="420" height="420"></canvas>
+                <span class="canvas-tag-overlay tag-left">Input: Raw SAR (Sentinel-1)</span>
+              </div>
+
+              <!-- Right Overlay Layer (Processed Result) -->
+              <div class="canvas-wrapper" id="processed-wrapper">
+                <canvas id="processed-canvas" width="420" height="420"></canvas>
+                <span class="canvas-tag-overlay tag-right" id="processed-tag-label">Processed Output</span>
+              </div>
+
+              <!-- Split Handle Divider -->
+              <div class="split-divider" id="split-divider">
+                <div class="split-handle">&#8644;</div>
+              </div>
+
+              <!-- Processing Loader Overlay -->
+              <div class="demo-loader" id="demo-loader">
+                <div class="spinner"></div>
+                <div class="loader-text" id="demo-loader-text">Processing Satellite Image...</div>
+              </div>
+            </div>
+
+            <!-- Metadata info bar below canvas -->
+            <div class="viewer-metadata-bar">
+              <div>
+                <strong id="sample-title" style="color: var(--white);">Flood Inundation &amp; River Basin</strong> &bull; 
+                <span id="sample-location">Assam / Brahmaputra</span> &bull; 
+                <span id="sample-sensor">Sentinel-1 C-Band SAR (10m)</span>
+              </div>
+              <button class="btn-download-result" onclick="downloadProcessedResult()">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <polyline points="7 10 12 15 17 10"/>
+                  <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+                Export Analysis Result
+              </button>
+            </div>
+
+            <!-- Analysis Cards Grid (Histogram + Legend + Explanations) -->
+            <div class="demo-analysis-grid">
+              
+              <!-- Card A: Cluster Breakdown -->
+              <div class="analysis-card">
+                <div class="analysis-card-title">
+                  <span>Preliminary Region Clustering</span>
+                  <span style="font-size: 0.72rem; color: var(--teal-400); text-transform: none;">K-Means Algorithm</span>
+                </div>
+                <div class="cluster-legend-list" id="cluster-legend-list">
+                  <div style="font-size: 0.85rem; color: var(--slate-400); text-align: center; padding: 1.5rem 0;">
+                    Click <strong>"Generate Visualization"</strong> to compute pixel cluster distributions.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card B: Radar Intensity Histogram & dB Scale -->
+              <div class="analysis-card">
+                <div class="analysis-card-title">
+                  <span>Backscatter Distribution</span>
+                  <span style="font-size: 0.72rem; color: var(--teal-400); text-transform: none;">256-Bin Histogram</span>
+                </div>
+                <div class="histogram-wrapper">
+                  <canvas id="histogram-canvas" width="340" height="120"></canvas>
+                </div>
+                <div class="histogram-axis-labels">
+                  <span id="hist-min-db">-28 dB (Specular / Water)</span>
+                  <span>0 dB</span>
+                  <span id="hist-max-db">+6 dB (Corner / Built-up)</span>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Card C: Scientific Interpretation of Result -->
+            <div class="analysis-card" style="margin-top: 1.5rem;">
+              <div class="analysis-card-title">
+                <span>Physical Interpretation &amp; Scenario Description</span>
+              </div>
+              <div id="results-explanation-content">
+                <!-- Dynamically populated by demo.js -->
+              </div>
+              <div style="margin-top: 1rem; font-size: 0.82rem; color: var(--slate-300);">
+                <strong>SAR Physics Breakdown:</strong> <span id="sample-sar-interp">Analyzing physical backscatter characteristics...</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         5. PROPOSED SYSTEM AND INNOVATION
+         ========================================================================== -->
+    <section class="innovation" id="innovation">
+      <div class="container">
+        <div class="section-header">
+          <span class="badge-tag">Academic Contribution</span>
+          <h2 class="section-title">Proposed System &amp; Innovation</h2>
+          <p class="section-subtitle">
+            Advancing beyond pure aesthetic SAR colourization by coupling neural translation with deep semantic terrain segmentation for quantifiable decision support.
+          </p>
+        </div>
+
+        <div class="innovation-stages-grid">
+          <!-- Stage 1 (Base Paper) -->
+          <div class="stage-card base">
+            <span class="stage-label-tag">Stage 1: Base Paper Foundation</span>
+            <h3>SAR Image Colourization</h3>
+            <p>
+              Adopts the foundational approach of using a Convolutional Neural Network (CNN) Encoder-Decoder trained on paired satellite images to translate single-channel or dual-polarization radar backscatter into optical-like color images.
+            </p>
+            <ul class="stage-feature-list">
+              <li>&#9679; <strong>Input:</strong> Sentinel-1 SAR amplitude / polarization channels.</li>
+              <li>&#9679; <strong>Color Space:</strong> CIE Lab space (preserves luminance while synthesizing chromaticity a*, b*).</li>
+              <li>&#9679; <strong>Primary Goal:</strong> Improve visual interpretability for human analysts who struggle with black-and-white radar speckle.</li>
+              <li>&#9679; <strong>Limitation of Base Work:</strong> Pure colourization is purely aesthetic; it does not output quantitative class boundaries or land-use percentages.</li>
+            </ul>
+          </div>
+
+          <!-- Stage 2 (Proposed Innovation) -->
+          <div class="stage-card proposed">
+            <span class="stage-label-tag">Stage 2: Our Proposed Enhancement</span>
+            <h3>Semantic Terrain Analysis</h3>
+            <p>
+              Our novel contribution introduces a dedicated downstream <strong>semantic segmentation pipeline (U-Net architecture)</strong> to automatically identify and delineate critical terrain categories from the multi-channel satellite representation.
+            </p>
+            <ul class="stage-feature-list">
+              <li>&#9679; <strong>Novel Architecture:</strong> End-to-end integration of translation features into a U-Net semantic segmenter.</li>
+              <li>&#9679; <strong>Quantifiable Metrics:</strong> Calculates square kilometers of flooded area, damaged vegetation, and accessible roadways.</li>
+              <li>&#9679; <strong>Boundary Preservation:</strong> Skip connections preserve sharp natural boundaries between water and land that are often blurred by simple colourization.</li>
+              <li>&#9679; <strong>Actionable Intelligence:</strong> Directly serves emergency disaster response and public health contingency teams.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Target Terrain Categories -->
+        <div class="terrain-categories-section">
+          <h3 style="text-align: center; font-size: 1.6rem; color: var(--navy-900);">Target Terrain Classes</h3>
+          <p style="text-align: center; color: var(--slate-600); max-width: 650px; margin: 0.5rem auto 0 auto;">
+            The four primary land-cover categories targeted for semantic segmentation in the proposed system:
+          </p>
+
+          <div class="terrain-grid">
+            <div class="terrain-card water">
+              <div class="terrain-icon">🌊</div>
+              <h4>Water Bodies &amp; Floods</h4>
+              <p>Calm water acts as a specular mirror, reflecting radar pulses away from the sensor. Displays characteristically low backscatter (&sigma;&deg; &lt; -18 dB).</p>
+            </div>
+            <div class="terrain-card vegetation">
+              <div class="terrain-icon">🌲</div>
+              <h4>Vegetation &amp; Crops</h4>
+              <p>Canopy leaves, twigs, and stems cause multiple internal reflections (volume scattering), producing textured medium backscatter (&sigma;&deg; &asymp; -14 to -8 dB).</p>
+            </div>
+            <div class="terrain-card urban">
+              <div class="terrain-icon">🏢</div>
+              <h4>Built-up &amp; Structures</h4>
+              <p>Right angles between building walls and ground act as corner reflectors (double-bounce), causing exceptionally intense backscatter (&sigma;&deg; &gt; 0 dB).</p>
+            </div>
+            <div class="terrain-card bare">
+              <div class="terrain-icon">🏜️</div>
+              <h4>Bare Soil &amp; Rock</h4>
+              <p>Surface roughness and dielectric constant (moisture content) dictate backscatter. Dry smooth soil appears dark; rough moist ploughed soil appears bright.</p>
+            </div>
+          </div>
+
+          <!-- Academic Rigor Caveat -->
+          <div class="rigor-alert">
+            <span style="font-size: 1.4rem;">⚠️</span>
+            <div>
+              <strong>Academic Integrity &amp; Model Status Disclaimer:</strong>
+              The terrain categories demonstrated in the interactive demo above represent <em>unsupervised pixel-clustering approximations</em>. They are not claimed to be the final predictions of a fully trained deep learning model. Formal semantic segmentation predictions will only be reported once the U-Net model is trained and quantitatively evaluated against ground-truth benchmark datasets.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         6. TECHNOLOGY STACK
+         ========================================================================== -->
+    <section class="tech-stack" id="tech-stack">
+      <div class="container">
+        <div class="section-header">
+          <span class="badge-tag">Tools &amp; Frameworks</span>
+          <h2 class="section-title">Technology Stack</h2>
+          <p class="section-subtitle">
+            Core technologies, deep learning frameworks, and satellite datasets powering the translation and terrain analysis pipeline.
+          </p>
+        </div>
+
+        <div class="tech-grid">
+          <!-- Python -->
+          <div class="tech-card">
+            <div class="tech-card-header">
+              <div class="tech-icon-box">🐍</div>
+              <div>
+                <h4>Python</h4>
+                <span class="tech-badge-role">Core Programming Language</span>
+              </div>
+            </div>
+            <p>Serves as the foundation for numerical data manipulation, geospatial raster operations, and deep learning neural network training.</p>
+          </div>
+
+          <!-- PyTorch -->
+          <div class="tech-card">
+            <div class="tech-card-header">
+              <div class="tech-icon-box">🔥</div>
+              <div>
+                <h4>PyTorch</h4>
+                <span class="tech-badge-role">Deep Learning Framework</span>
+              </div>
+            </div>
+            <p>Industry-standard framework utilized for designing, training, GPU-accelerating, and evaluating the CNN Encoder-Decoder and U-Net models.</p>
+          </div>
+
+          <!-- CNN Encoder-Decoder -->
+          <div class="tech-card">
+            <div class="tech-card-header">
+              <div class="tech-icon-box">🧠</div>
+              <div>
+                <h4>CNN Encoder&ndash;Decoder</h4>
+                <span class="tech-badge-role">Image Translation Architecture</span>
+              </div>
+            </div>
+            <p>Core neural architecture adapted from the base paper, mapping input polarimetric radar tensors into multi-channel optical representations.</p>
+          </div>
+
+          <!-- Lab Color Space -->
+          <div class="tech-card">
+            <div class="tech-card-header">
+              <div class="tech-icon-box">🌈</div>
+              <div>
+                <h4>CIE Lab Colour Space</h4>
+                <span class="tech-badge-role">Colour Representation Model</span>
+              </div>
+            </div>
+            <p>Decouples luminance (L*) from chromaticity channels (a* green-red, b* blue-yellow). Radar intensity maps directly to L*, drastically stabilizing color convergence.</p>
+          </div>
+
+          <!-- OpenCV & NumPy -->
+          <div class="tech-card">
+            <div class="tech-card-header">
+              <div class="tech-icon-box">📐</div>
+              <div>
+                <h4>OpenCV &amp; NumPy</h4>
+                <span class="tech-badge-role">Computer Vision &amp; Arrays</span>
+              </div>
+            </div>
+            <p>High-performance matrix computing, Lee speckle filter convolutions, contrast histogram equalization (CLAHE), and image affine transformations.</p>
+          </div>
+
+          <!-- U-Net -->
+          <div class="tech-card">
+            <div class="tech-card-header">
+              <div class="tech-icon-box">🕸️</div>
+              <div>
+                <h4>U-Net Architecture</h4>
+                <span class="tech-badge-role">Semantic Segmentation Model</span>
+              </div>
+            </div>
+            <p>Symmetric encoder-decoder with skip connections, engineered specifically for preserving precise spatial boundaries in geographical segmentation.</p>
+          </div>
+
+          <!-- Sentinel-1 & 2 -->
+          <div class="tech-card">
+            <div class="tech-card-header">
+              <div class="tech-icon-box">🛰️</div>
+              <div>
+                <h4>Sentinel-1 &amp; Sentinel-2</h4>
+                <span class="tech-badge-role">Satellite Constellation Data</span>
+              </div>
+            </div>
+            <p>ESA Copernicus open-access constellations: Sentinel-1 provides 10m C-band radar; Sentinel-2 provides 10m multispectral optical imagery.</p>
+          </div>
+
+          <!-- Datasets -->
+          <div class="tech-card">
+            <div class="tech-card-header">
+              <div class="tech-icon-box">📊</div>
+              <div>
+                <h4>SEN12MS &amp; SpaceNet-6</h4>
+                <span class="tech-badge-role">Candidate Training Datasets</span>
+              </div>
+            </div>
+            <p>Curated multi-sensor benchmark datasets with paired SAR and optical patches. Subject to verifying exact match with the base paper's experiments.</p>
+          </div>
+
+          <!-- Web Application -->
+          <div class="tech-card">
+            <div class="tech-card-header">
+              <div class="tech-icon-box">🌐</div>
+              <div>
+                <h4>Web Interface &amp; Python API</h4>
+                <span class="tech-badge-role">Interactive Web Deployment</span>
+              </div>
+            </div>
+            <p>FastAPI / HTTP backend coupled with modern HTML5 Canvas, providing instantaneous visual feedback and zero-barrier access for non-technical users.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         7. INTENDED USERS AND APPLICATIONS
+         ========================================================================== -->
+    <section class="users-apps" id="users">
+      <div class="container">
+        <div class="section-header">
+          <span class="badge-tag">Human Impact &amp; Stakeholders</span>
+          <h2 class="section-title">Intended Users &amp; Real-World Applications</h2>
+          <p class="section-subtitle">
+            Designed to bridge the gap between advanced space radar science and frontline humanitarian and community decision-making.
+          </p>
+        </div>
+
+        <div class="users-grid">
+          <!-- User 1: Scientists & Researchers -->
+          <div class="user-card">
+            <div class="user-card-icon">🔬</div>
+            <h3>Scientists &amp; Researchers</h3>
+            <p>Remote sensing specialists, hydrologists, and geoscientists analyzing multi-temporal radar series without being hindered by cloud cover or complex speckle artifacts.</p>
+          </div>
+
+          <!-- User 2: Environmental Monitoring Teams -->
+          <div class="user-card">
+            <div class="user-card-icon">🌲</div>
+            <h3>Environmental Monitoring</h3>
+            <p>Forestry departments and conservation agencies tracking illegal deforestation, mangrove depletion, wetland degradation, and soil moisture shifts across seasons.</p>
+          </div>
+
+          <!-- User 3: Disaster Management -->
+          <div class="user-card">
+            <div class="user-card-icon">🚨</div>
+            <h3>Disaster Response Teams</h3>
+            <p>National and state disaster rescue personnel requiring immediate, all-weather mapping of flood inundation extent, breached riverbanks, and submerged transport routes.</p>
+          </div>
+
+          <!-- User 4: ASHA & Community Frontline Workers -->
+          <div class="user-card asha-highlight">
+            <div class="user-card-icon">🩺</div>
+            <h3>ASHA &amp; Frontline Health Workers</h3>
+            <p>Community healthcare workers and local panchayat coordinators who need accessible, plain-language visual updates on which local hamlets are cut off by floodwaters to coordinate safe medical visits.</p>
+          </div>
+        </div>
+
+        <!-- Applications Spotlight -->
+        <div class="applications-banner">
+          <h3>Key Application Domains</h3>
+          <div class="app-pills-grid">
+            <div class="app-pill-card">
+              <h4>🌊 Flood Monitoring Support</h4>
+              <p>Rapid delineation of inundated areas during peak monsoon storms when optical satellites fail.</p>
+            </div>
+            <div class="app-pill-card">
+              <h4>🌾 Agriculture &amp; Crop Health</h4>
+              <p>Tracking crop canopy moisture, identifying drought stress, and observing seasonal sowing.</p>
+            </div>
+            <div class="app-pill-card">
+              <h4>🏗️ Urban Growth &amp; Infrastructure</h4>
+              <p>Detecting rapid urban sprawl, bridge status, and industrial construction via double-bounce reflection.</p>
+            </div>
+            <div class="app-pill-card">
+              <h4>📚 Academic &amp; Educational Tool</h4>
+              <p>Demystifying microwave radar remote sensing for university students and geospatial learners.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Prominent Safety & Medical Disclaimer Box -->
+        <div class="official-disclaimer-box">
+          <div class="disclaimer-icon">&#9888;&#65039;</div>
+          <div class="disclaimer-body">
+            <h4>Critical Disclaimer: Visual Interpretation Support Notice</h4>
+            <p>
+              This website and its associated software constitute an <strong>academic research demonstration</strong> designed strictly to assist human visual interpretation of satellite radar data. This system <strong>does not predict disaster occurrences</strong>, does not establish direct medical or epidemiological diagnoses, and <strong>must never replace official emergency alerts or instructions</strong> issued by competent statutory authorities (such as the National Disaster Management Authority &mdash; NDMA, India Meteorological Department &mdash; IMD, or local district administration).
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         8. LIMITATIONS AND FUTURE SCOPE
+         ========================================================================== -->
+    <section class="limitations-scope" id="limitations">
+      <div class="container">
+        <div class="section-header">
+          <span class="badge-tag">Scientific Honesty &amp; Roadmap</span>
+          <h2 class="section-title">Limitations &amp; Future Scope</h2>
+          <p class="section-subtitle">
+            Clear boundaries of what this academic student prototype accomplishes, its physical constraints, and the planned roadmap.
+          </p>
+        </div>
+
+        <div class="limits-grid">
+          <!-- Current Limitations -->
+          <div class="limits-card">
+            <h3><span style="color: var(--amber-600);">&#9888;</span> Current Limitations</h3>
+            
+            <div class="limit-item">
+              <h4>Optical-like Colourization is Not True Spectral Reflectance</h4>
+              <p>Deep learning generates plausible synthetic color representations based on training statistics. It cannot magically reconstruct the true chemical spectral reflectance measured by optical sensors.</p>
+            </div>
+
+            <div class="limit-item">
+              <h4>Dependency on Training Data Diversity</h4>
+              <p>Models trained predominantly on European or temperate regions (e.g., standard SEN12MS splits) may exhibit degraded performance when applied to tropical monsoon terrain, arid deserts, or dense mangroves.</p>
+            </div>
+
+            <div class="limit-item">
+              <h4>Pixel Clustering is Not Semantic Segmentation</h4>
+              <p>The unsupervised K-Means clustering shown in this demonstration groups pixels purely by intensity and gradient similarity; it does not possess semantic knowledge of land-use without ground-truth supervised labels.</p>
+            </div>
+
+            <div class="limit-item">
+              <h4>Radar Geometric Distortions Remain Challenging</h4>
+              <p>In steep mountainous regions, radar foreshortening, layover, and deep shadow create irreversible loss of signal where no optical translation can be physically accurate.</p>
+            </div>
+          </div>
+
+          <!-- Future Scope -->
+          <div class="scope-card">
+            <h3><span style="color: var(--teal-600);">&#128640;</span> Future Scope &amp; Roadmap</h3>
+            
+            <div class="limit-item">
+              <h4>Supervised Model Training &amp; Fine-Tuning</h4>
+              <p>Full training of the CNN Encoder-Decoder on the paired SEN12MS dataset with combined L1 pixel loss and perceptual VGG feature loss for photorealistic fidelity.</p>
+            </div>
+
+            <div class="limit-item">
+              <h4>Quantitative Metric Benchmarking (PSNR &amp; SSIM)</h4>
+              <p>Rigorously evaluating generated optical imagery using Peak Signal-to-Noise Ratio (PSNR) and Structural Similarity Index Measure (SSIM) against test-split Sentinel-2 pairs.</p>
+            </div>
+
+            <div class="limit-item">
+              <h4>U-Net Semantic Segmentation Integration</h4>
+              <p>Training U-Net semantic segmentation with Dice / Focal loss against Copernicus Land Cover Service labels to achieve verified mean Intersection-over-Union (mIoU) scores.</p>
+            </div>
+
+            <div class="limit-item">
+              <h4>Interactive Map-Based GIS Visualization</h4>
+              <p>Incorporating interactive Leaflet / OpenLayers web mapping with GeoTIFF coordinate re-projection to enable real-world geographical bounding-box queries and temporal flood progression.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       9. FOOTER & ACADEMIC ATTRIBUTION
+       ========================================================================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+            <div class="nav-logo-icon" style="width: 32px; height: 32px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="9"/>
+                <path d="M12 3a9 9 0 0 1 9 9"/>
+                <circle cx="12" cy="12" r="1.5" fill="currentColor"/>
+              </svg>
+            </div>
+            <h3 style="margin: 0;">SAR-Vision AI</h3>
+          </div>
+          <p>
+            Academic Engineering Project titled <strong>“AI-Based SAR Image Translation and Terrain Analysis”</strong>. Developed to advance microwave satellite interpretability and disaster-support situational awareness.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Remote Sensing &amp; SAR</a></li>
+            <li><a href="#workflow">End-to-End Workflow</a></li>
+            <li><a href="#demo">Interactive Workbench</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Research Scope</h4>
+          <ul class="footer-links">
+            <li><a href="#innovation">Proposed System &amp; U-Net</a></li>
+            <li><a href="#tech-stack">Technology Stack</a></li>
+            <li><a href="#users">Intended Users &amp; ASHA</a></li>
+            <li><a href="#limitations">Limitations &amp; Future Scope</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Data Sources</h4>
+          <ul class="footer-links">
+            <li><a href="https://scihub.copernicus.eu/" target="_blank" rel="noopener">ESA Copernicus Open Access</a></li>
+            <li><a href="https://sentinels.copernicus.eu/web/sentinel/missions/sentinel-1" target="_blank" rel="noopener">Sentinel-1 Radar Mission</a></li>
+            <li><a href="https://sentinels.copernicus.eu/web/sentinel/missions/sentinel-2" target="_blank" rel="noopener">Sentinel-2 Optical Mission</a></li>
+            <li><a href="https://arxiv.org/abs/1906.07789" target="_blank" rel="noopener">SEN12MS Dataset (TUM)</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          &copy; Academic Project Demonstration &bull; AI-Based SAR Image Translation and Terrain Analysis
+        </div>
+        <div style="color: var(--teal-400);">
+          Built with Python, HTML5 Canvas, &amp; Deep Learning Architectures
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="assets/js/samples.js"></script>
+  <script src="assets/js/demo.js"></script>
+  <script src="assets/js/main.js"></script>
+
+  <!-- Hero Canvas Initializer script -->
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      // Draw benchmark 0 (Flood Disaster) onto hero visual card canvases
+      setTimeout(() => {
+        const floodGen = BenchmarkSamples.samples[0].generate(220, 220);
+        const sarCanvas = document.getElementById("hero-sar-canvas");
+        const optCanvas = document.getElementById("hero-opt-canvas");
+        
+        if (sarCanvas && optCanvas) {
+          const sarImg = new Image();
+          sarImg.onload = () => sarCanvas.getContext("2d").drawImage(sarImg, 0, 0, 220, 220);
+          sarImg.src = floodGen.sarDataUrl;
+
+          const optImg = new Image();
+          optImg.onload = () => optCanvas.getContext("2d").drawImage(optImg, 0, 0, 220, 220);
+          optImg.src = floodGen.optDataUrl;
+        }
+      }, 50);
+    });
+  </script>
+</body>
+</html>
